@@ -56,10 +56,10 @@ public class CarteRepository {
        return carte;
     }
 
-    public Carte findByIdAndFiliala(Long id,String filiala){
+    public Carte findByIdAndClasificare(Long id,String clasificare){
         Carte carte = jdbcTemplate.queryForObject(
-                "SELECT * FROM carte WHERE id= ? AND filiala:",
-                new Object[]{id,filiala},
+                "SELECT * FROM carte WHERE id= ? AND clasificare=?",
+                new Object[]{id,clasificare},
                 (response,rowNumber) ->
                         new Carte(response.getLong("id"),
                                 response.getString("titlu"),
@@ -70,10 +70,12 @@ public class CarteRepository {
 
         return carte;
     }
-   //POST-creare informatiei
-    public void salvare (String titlu, String autor, String clasificare, Float pret, String filiala ){
+
+//POST-creare informatiei
+
+    public void salvare (String titlu, String autor, String clasificare, Float pret,String filiala ){
         jdbcTemplate.update("INSERT INTO (titlu,autor,clasificare,pret,filiala) VALUES (?,?,?,?,?)",
-                titlu,autor,clasificare, pret, filiala);
+                titlu,autor,clasificare);
 
     }
 
@@ -83,16 +85,14 @@ public class CarteRepository {
 
     }
 
-    //PUT -modificarea informatiei
+//PUT -modificarea informatiei
 
     public void update(Long id,Carte carte){
-        jdbcTemplate.update("UPDATE carte SET titlu=?, autor=?,clasificare=?, pret=?,filiala=?",
+        jdbcTemplate.update("UPDATE carte SET titlu = ?, autor = ?,clasificare = ?, pret = ?,filiala = ? WHERE id = ?",
                 carte.getTitlu(),carte.getAutor(),carte.getClasificare(), carte.getPret(), carte.getFiliala(),id);
     }
 
-
-
-    //DELETE-stergerea informatiei
+//DELETE-stergerea informatiei
     public void delete(Long id){
         jdbcTemplate.update("DELETE FROM carte WHERE id = ?",id);
     }

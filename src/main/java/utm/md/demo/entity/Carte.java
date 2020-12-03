@@ -1,7 +1,5 @@
 package utm.md.demo.entity;
 
-
-
 public class Carte {
     private Long id;
     private String titlu;
@@ -14,7 +12,7 @@ public class Carte {
         this.id = id;
         this.titlu = titlu;
         this.autor = autor;
-        this. clasificare = clasificare;
+        this.clasificare = clasificare;
         this.pret = pret;
         this.filiala = filiala;
     }

@@ -1,4 +1,7 @@
 package utm.md.demo.controller;
+
+import utm.md.demo.entity.Biblioteca;
+import utm.md.demo.repository.BibliotecaRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,11 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import utm.md.demo.entity.Biblioteca;
-import utm.md.demo.entity.Carte;
-import utm.md.demo.repository.BibliotecaRepository;
 
 import java.util.List;
 @RestController
@@ -31,6 +32,7 @@ public class BibliotecaController {
             return bibliotecaList;
         }
 //GET -extragerea informatiei dupa id si numele bibliotecii
+
     @GetMapping("/{id}/{nume}")
     public Biblioteca  findByIdAndName(@PathVariable Long id, @PathVariable String nume) {
        Biblioteca biblioteca  = bibliotecaRepository.findByIdAndName(id,nume);
@@ -48,18 +50,18 @@ public class BibliotecaController {
         bibliotecaRepository.salvare(id,nume,adresa,nr_angajati,nrCarti);
     }
 
-    //PUT -modificarea informatiei despre bibliotec
+//PUT -modificarea informatiei despre bibliotec
+
     @PutMapping("/{id}")
     public void update(@PathVariable Long id, @RequestBody Biblioteca biblioteca){
         bibliotecaRepository.update(id,biblioteca);
     }
 
-    //DELETE-stergerea informatiei despre numarul de angajati
-    @DeleteMapping("/{id}")
+//DELETE-stergerea informatiei despre numarul de angajati
+
+    @DeleteMapping("/nr_angajati}")
     public void delete(@PathVariable Long nr_angajati){
         bibliotecaRepository.delete(nr_angajati);
     }
-
-
 }
 

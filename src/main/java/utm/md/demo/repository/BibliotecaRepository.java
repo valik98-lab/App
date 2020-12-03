@@ -55,7 +55,7 @@ public class BibliotecaRepository {
     //PUT -modificarea informatiei despre o biblioteca
 
     public void update(Long id, Biblioteca biblioteca){
-        jdbcTemplate.update("UPDATE carte SET nume=?,adresa=?,nr_angajati=?,nrCarti=?",
+        jdbcTemplate.update("UPDATE carte SET nume=?,adresa=?,nr_angajati=?,nrCarti=? WHERE id = ?",
                  biblioteca.getNume(),biblioteca.getAdresa(),biblioteca.getNr_angajati(),biblioteca.getNrCarti(),id);
     }
 

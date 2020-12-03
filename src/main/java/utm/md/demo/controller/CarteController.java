@@ -1,9 +1,7 @@
 package utm.md.demo.controller;
 
-
 import utm.md.demo.entity.Carte;
 import utm.md.demo.repository.CarteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 @RestController
 @RequestMapping("/carte")
@@ -21,6 +22,7 @@ public class CarteController {
 
     @Autowired
     private CarteRepository carteRepository;
+    private String iliala;
 
 //GET -extragerea informatiei despre toate cartile
 
@@ -48,9 +50,9 @@ public class CarteController {
 
 //GET -extragerea informatiei dupa id si filiala specificata
 
-    @GetMapping("/{id}/{filiala}")
-    public Carte findByIdAndFiliala(@PathVariable Long id,@PathVariable String filiala) {
-        Carte carte = carteRepository.findByIdAndFiliala(id,filiala);
+    @GetMapping("/{id}/{clasificare}")
+    public Carte findByIdAndClasificare(@PathVariable Long id,@PathVariable String clasificare ) {
+        Carte carte = carteRepository.findByIdAndClasificare(id,clasificare);
         return carte;
     }
 
@@ -62,7 +64,7 @@ public class CarteController {
                         @RequestParam (required = false) String clasificare,
                         @RequestParam (required = false) Float pret,
                         @RequestParam (required = false) String filiala){
-        carteRepository.salvare(titlu,autor,clasificare ,pret,filiala);
+        carteRepository.salvare(titlu,autor,clasificare,pret,filiala);
     }
 /*
     @PostMapping

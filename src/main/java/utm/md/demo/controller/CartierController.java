@@ -1,4 +1,7 @@
 package utm.md.demo.controller;
+
+import utm.md.demo.entity.Cartier;
+import utm.md.demo.repository.CartierRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,9 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import utm.md.demo.entity.Cartier;
-import utm.md.demo.repository.CartierRepository;
+
 
 import java.util.List;
 @RestController
@@ -35,20 +38,20 @@ public class CartierController {
         return cartier;
     }
 
-    //POST-creare unui cartier nou
+//POST-creare unui cartier nou
 
     @PostMapping
     public void salvare(@RequestBody Cartier cartier){
         cartierRepository.salvare(cartier);
     }
-    //PUT -modificarea informatiei despre populatia cartierului
+//PUT -modificarea informatiei despre populatia cartierului
 
     @PutMapping("/{populatie}")
     public void update(@PathVariable Long populatie, @RequestBody Cartier cartier) {
         cartierRepository.update(populatie,cartier);
     }
 
-    //DELETE-stergerea informatiei despre un cartier cu un anumit numari de institutii publice
+//DELETE-stergerea informatiei despre un cartier cu un anumit numari de institutii publice
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long institutii_publice){
         cartierRepository.delete(institutii_publice);

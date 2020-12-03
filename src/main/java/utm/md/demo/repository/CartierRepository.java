@@ -47,7 +47,7 @@ public class CartierRepository {
     //PUT -modificarea informatiei despre numarul populatiei
 
     public void update(Long populatie,Cartier cartier ){
-        jdbcTemplate.update("UPDATE carte SET denumire=?, populatie=?,institutii_publice=?",
+        jdbcTemplate.update("UPDATE carte SET denumire=?, populatie=?,institutii_publice=? WHERE populatie = ?",
                 cartier.getDenumire(),cartier.getPopulatie(),cartier.getInstitutii_publice(),populatie );
     }
 
